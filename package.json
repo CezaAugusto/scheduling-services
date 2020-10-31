@@ -1,0 +1,29 @@
+{
+  "name": "scheduling-services",
+  "version": "1.0.0",
+  "description": "A tool to help schedule technical services",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "devbabel": "nodemon app.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CezaAugusto/scheduling-services.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CezaAugusto/scheduling-services/issues"
+  },
+  "homepage": "https://github.com/CezaAugusto/scheduling-services#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
