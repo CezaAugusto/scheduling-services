@@ -7,3 +7,5 @@ A tool to help schedule technical services
 
 ## How to Run
 
+For now just, run the server with 
+>npm run dev
