@@ -1,13 +1,1 @@
-[
-    {
-        "id": 1,
-        "street": "Areia Branca",
-        "number": "90",
-        "neighborhood": "Ponta Negra",
-        "complement": "",
-        "cep": "59090-280",
-        "city": "Natal",
-        "state": "RN",
-        "amount_services": 1
-    }
-]
+[]
