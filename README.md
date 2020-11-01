@@ -4,7 +4,7 @@ A tool to help schedule technical services
 ### Technologies
 - NodeJS, Express (...)
 
->At first, I’ll be using two .json files as the storage location
+>At first, I’ll be using a .json file as the storage location
 
 ## What's a Sheduling Services
 (...)
