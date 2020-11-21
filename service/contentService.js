@@ -1,11 +1,10 @@
 const fs = require("fs")
-const filePath = "./models/content.json"
 
-function save (content) {
+function save (filePath, content) {
     const contentString = JSON.stringify(content)
     return fs.writeFileSync(filePath, contentString)
 }
-function load () {
+function load (filePath) {
     const fileBuffer = fs.readFileSync(filePath, 'utf-8')
     return JSON.parse(fileBuffer)
 }

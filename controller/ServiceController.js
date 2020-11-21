@@ -2,47 +2,59 @@
 
 const { save, load } = require("../service/contentService.js")
 const factoryService = require('./factoryService.js')
+const serviceFilePath = "./contents/service.json"
+const generalFilePath = "./contents/general.json"
 
 class ServiceController {
     all () {
         try {
-            const currentContent = load()
+            const currentContent = load(serviceFilePath)
             return currentContent
         } catch (err) {
             return err
         }
     }
 
-    create (id_address, content) {
+    create (content) {
         try {
-            const currentContent = load()
-            const newService = factoryService(id_address, content)
-            const index = currentContent.findIndex((element => element.id == id_address))
-            currentContent[index].services.push(newService)
-            currentContent[index].amount_services++
-            return save(currentContent)
+            const currentContent = load(serviceFilePath)
+            currentContent.push(factoryService(content))
+            return save(serviceFilePath, currentContent)
         } catch (err) {
             return err
         }
     }
-    update (id_address, id_service, content) {
+    update (id, content) {
         try {
-            const currentContent = load()
-            const indexAddress = currentContent.findIndex((element => element.id == id_address))
-            const indexService = currentContent[indexAddress].services.findIndex((element => element.id == id_service))
-            const service = currentContent[indexAddress].services[indexService]
-            currentContent[indexAddress].services[indexService] = Object.assign({}, service, content)
-            return save(currentContent)
+            const currentContent = load(serviceFilePath)
+            const indexService = currentContent.findIndex((element => element.id == id))
+            currentContent[indexService] = Object.assign({}, currentContent[indexService], content)
+            return save(serviceFilePath, currentContent)
         } catch (err) {
 
         }
     }
-    delete (id_address, id_service) {
+    delete (id) {
         try {
-            const currentContent = load()
-            const indexAddress = currentContent.findIndex((element => element.id == id_address))
-            currentContent[indexAddress].services = currentContent[indexAddress].services.filter(item => item.id != id_service)
-            return save(currentContent)
+            let currentContent = load(serviceFilePath)
+            currentContent = currentContent.filter(item => item.id != id)
+            return save(serviceFilePath, currentContent)
+        } catch (err) {
+            return err
+        }
+    }
+
+    calculeRemainingWorkForceForDay (day) {
+        try {
+            let currentContent = load(serviceFilePath)
+            let generalConfig = load(generalFilePath)
+            const usedWorkForce = currentContent.reduce((prev, current) => {
+                const formatScheduledDate = new Date(current.scheduled_date)
+                if (formatScheduledDate.getDay() == day) {
+                    return current.workforce + prev
+                }
+            }, 0)
+            return generalConfig.workforce - usedWorkForce
         } catch (err) {
             return err
         }
